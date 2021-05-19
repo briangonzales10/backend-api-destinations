@@ -1,14 +1,14 @@
 let {destinations} = require('./db')
 const express = require('express')
 const {generateID} = require('./services')
-
+const PORT =  process.env.PORT || 3000;
 const app = express()
 
 app.use(express.json())
 // app.use(express.urlencoded({ extended: true })); 
 
-app.listen(3000, () =>{
-    console.log('Connected & listening on port 3000');
+app.listen(PORT, () =>{
+    console.log(`Connected & listening on port ${PORT}`);
 })
 
 app.get('/destinations', (req, res) => {
