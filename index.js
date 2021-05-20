@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-
 let {destinations} = require('./db')
 const express = require('express')
 const axios = require('axios').default;
@@ -32,7 +31,7 @@ app.post('/destinations', async (req, res) =>{
     const {name, location, description} = req.body
     const photo = await GrabImage(name)
 
-    const url = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${name}`
+    // const url = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${name}`
     // let ind = Math.floor(Math.random() * 10)
 //test Axios Method
 //     let newPhoto = ""

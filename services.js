@@ -1,4 +1,7 @@
+require('dotenv').config()
 const fetch = require('node-fetch')
+const API_KEY = process.env.API_KEY
+
 function generateID(){
 
     let id = ""
@@ -14,7 +17,7 @@ async function GrabImage(destination) {
     //Unsplash Images
 
 let dest = destination;
-const searchURL = `https://api.unsplash.com/search/photos/?client_id=9xB6KzPdxq603YtE7BwTp5OsWNjOrLPRsSw_4XWKW0A&query=${dest}`
+const searchURL = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${dest}`
 
 let ind = Math.floor(Math.random() * 10)
 return fetch(searchURL)
