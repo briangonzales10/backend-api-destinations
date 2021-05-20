@@ -69,23 +69,7 @@ app.delete('/destinations/:id', (req,res) => {
 })
 
 //Edit objects via destination route through 'query'
-// app.put('/destinations', (req, res) =>{
 
-// const {id, name, location, photo, description} = req.query
-// // Filter for ID first
-// for (let dest of destinations) {
-//     if (dest.id === id) {
- 
-//         dest.name = name ? name : dest.name
-//         dest.location = location ? location : dest.location
-//         dest.photo = photo ? photo : dest.photo
-//         dest.description = description ? description : dest.description
-//         console.log(`${dest.name} | ${dest.location} | ${dest.photo} | ${dest.description} updated`);
-//     }
-   
-// } 
-//     res.send('PUT request updated')
-//   })
 
 app.put("/destinations/:id", (req, res) =>{
     const {id} = req.params
