@@ -3,16 +3,16 @@ require('dotenv').config()
 let {destinations} = require('./db')
 const express = require('express')
 const axios = require('axios').default;
+const cors = require('cors')
 const {generateID, GrabImage} = require('./services');
 
 const API_KEY = process.env.API_KEY
 const PORT =  process.env.PORT;
 const app = express()
 
+//Middleware
 app.use(express.json())
-app.use((req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
-  });
+app.use(cors())
 
 
 app.listen(PORT, () =>{
