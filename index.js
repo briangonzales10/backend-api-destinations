@@ -22,7 +22,7 @@ app.get('/destinations', (req, res) => {
 // Post new objects via /destinations route
 app.post('/destinations', (req, res) =>{
 
-const {name, location, photo, description} = req.body
+const {name, location, photo, description} = req.query
 
 if (name === undefined || name.length === 0 || location === undefined || location.length === 0){
     return res.status(400).send("Error need destination name & location")
