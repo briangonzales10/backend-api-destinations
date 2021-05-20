@@ -10,7 +10,10 @@ const PORT =  process.env.PORT;
 const app = express()
 
 app.use(express.json())
-// app.use(express.urlencoded({ extended: true })); 
+app.use((req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+  });
+
 
 app.listen(PORT, () =>{
     console.log(`Connected & listening on port ${PORT}`);
