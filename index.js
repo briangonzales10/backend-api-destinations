@@ -62,7 +62,7 @@ app.delete('/destinations/:id', (req,res) => {
 // // Filter for ID first
 // for (let dest of destinations) {
 //     if (dest.id === id) {
-        
+        //
 //         dest.name = name ? name : dest.name
 //         dest.location = location ? location : dest.location
 //         dest.photo = photo ? photo : dest.photo
