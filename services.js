@@ -13,9 +13,9 @@ function generateID(){
 async function GrabImage(destination) {
     //Unsplash Images
 
-const API = `https://api.unsplash.com/search/photos/?client_id=9xB6KzPdxq603YtE7BwTp5OsWNjOrLPRsSw_4XWKW0A&query=`
 let dest = destination;
-const searchURL = `${API}${dest}`
+const searchURL = `https://api.unsplash.com/search/photos/?client_id=9xB6KzPdxq603YtE7BwTp5OsWNjOrLPRsSw_4XWKW0A&query=${dest}`
+
 let ind = Math.floor(Math.random() * 10)
 return fetch(searchURL)
     .then((response) => response.json())

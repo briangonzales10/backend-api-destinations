@@ -1,7 +1,13 @@
+require('dotenv').config()
+
+
 let {destinations} = require('./db')
 const express = require('express')
-const {generateID, GrabImage} = require('./services')
-const PORT =  process.env.PORT || 3000;
+const axios = require('axios').default;
+const {generateID, GrabImage} = require('./services');
+
+const API_KEY = process.env.API_KEY
+const PORT =  process.env.PORT;
 const app = express()
 
 app.use(express.json())
@@ -23,11 +29,19 @@ app.get('/destinations', (req, res) => {
 app.post('/destinations', async (req, res) =>{
  
 // const {name, location, photo, description} = req.body
-const {name, location, description} = req.body
-const photo = await GrabImage(name)
+    const {name, location, description} = req.body
+    const photo = await GrabImage(name)
 
+    const url = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${name}`
+    // let ind = Math.floor(Math.random() * 10)
+//test Axios Method
+//     let newPhoto = ""
+//    await axios.get(url).then(resp => {
+//         newAxiosPhoto = resp.data.results[ind].urls.small
+//     });
+//         console.log(`NEW Axios PHOTO ${newAxiosPhoto}`);
 
-if (name === undefined || name.length === 0 || location === undefined || location.length === 0){
+    if (name === undefined || name.length === 0 || location === undefined || location.length === 0){
     return res.status(400).send("Error need destination name & location")
 }
 
@@ -36,7 +50,7 @@ if (name === undefined || name.length === 0 || location === undefined || locatio
         id: generateID(),
         name: name, 
         location: location,
-       photo: photo ? photo : "", 
+        photo: photo, 
         description: description ? description : ""
     })
     res.send("Post Request Sent")
@@ -62,7 +76,7 @@ app.delete('/destinations/:id', (req,res) => {
 // // Filter for ID first
 // for (let dest of destinations) {
 //     if (dest.id === id) {
-        //
+ 
 //         dest.name = name ? name : dest.name
 //         dest.location = location ? location : dest.location
 //         dest.photo = photo ? photo : dest.photo
