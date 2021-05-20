@@ -11,6 +11,10 @@ app.listen(PORT, () =>{
     console.log(`Connected & listening on port ${PORT}`);
 })
 
+app.get('/', (req, res) => {
+    res.send("<h1>Brian's App</h1>")
+});
+
 app.get('/destinations', (req, res) => {
     res.send(destinations)
 })
@@ -47,3 +51,21 @@ app.delete('/destinations/:id', (req,res) => {
     res.send(`deleted ${deleteID}`)
 })
 
+//Edit objects via destination route through 'query'
+app.put('/destinations', (req, res) =>{
+
+const {id, name, location, photo, description} = req.query
+// Filter for ID first
+for (let dest of destinations) {
+    if (dest.id === id) {
+        
+        dest.name = name ? name : dest.name
+        dest.location = location ? location : dest.location
+        dest.photo = photo ? photo : dest.photo
+        dest.description = description ? description : dest.description
+        console.log(`${dest.name} | ${dest.location} | ${dest.photo} | ${dest.description} updated`);
+    }
+   
+} 
+    res.send('PUT request to homepage')
+  })
