@@ -13,11 +13,12 @@ function generateID(){
    return id
 }
 
-async function GrabImage(destination) {
+async function GrabImage(destination, location) {
     //Unsplash Images
 
 let dest = destination;
-const searchURL = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${dest}`
+let loc = location;
+const searchURL = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${dest} ${loc}`
 
 let ind = Math.floor(Math.random() * 10)
 return fetch(searchURL)

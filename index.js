@@ -32,7 +32,7 @@ app.post('/destinations', async (req, res) =>{
  
 // const {name, location, photo, description} = req.body
     const {name, location, description} = req.body
-    const photo = await GrabImage(name)
+    const photo = await GrabImage(name, location)
 
     // const url = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${name}`
     // let ind = Math.floor(Math.random() * 10)
@@ -74,9 +74,10 @@ app.delete('/destinations/:id', (req,res) => {
 //Edit objects via destination route through 'query'
 
 
-app.put("/destinations/:id", (req, res) =>{
+app.put("/destinations/:id", async (req, res) =>{
     const {id} = req.params
-    const {name, location, photo, description} = req.body
+    const {name, location,  description} = req.body
+
 
     if (!name && !location && !photo && !description){
         return res.status.send('No data to update')
@@ -84,6 +85,7 @@ app.put("/destinations/:id", (req, res) =>{
 
     for (let dest of destinations) {
         if (dest.id === id) {
+        const photo = await GrabImage(name, location)    
         dest.name = name ? name : dest.name
         dest.location = location ? location : dest.location
         dest.photo = photo ? photo : dest.photo
