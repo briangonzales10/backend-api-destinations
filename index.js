@@ -3,7 +3,7 @@ require('dotenv').config()
 let {destinations} = require('./db')
 const express = require('express')
 const axios = require('axios').default;
-// const cors = require('cors')
+const cors = require('cors')
 const {generateID, GrabImage} = require('./services');
 
 const API_KEY = process.env.API_KEY
@@ -12,7 +12,7 @@ const app = express()
 
 //Middleware
 app.use(express.json())
-// app.use(cors())
+app.use(cors())
 
 
 app.listen(PORT, () =>{
