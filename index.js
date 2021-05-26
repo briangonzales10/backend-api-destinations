@@ -91,7 +91,7 @@ app.put("/destinations/:id", async (req, res) =>{
         dest.photo = photo ? photo : dest.photo
         dest.description = description ? description : dest.description
         console.log(`${dest.name} | ${dest.location} | ${dest.photo} | ${dest.description} updated`);
-            break;
+        break;
         }
     }
     res.send('PUT request updated')
